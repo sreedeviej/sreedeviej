@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NetSage AI — Troubleshooting Console</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="netsage-root">
+  <div class="ns-shell">
+    <header class="ns-header">
+      <div class="ns-brand">
+        <span class="ns-brand-mark">NS</span>
+        <div>
+          <div class="ns-title">NetSage AI</div>
+          <div class="ns-subtitle">Diagnose &middot; Review &middot; Verify</div>
+        </div>
+      </div>
+      <nav class="ns-tabs" role="tablist" aria-label="Views">
+        <button class="ns-tab active" data-tab="cases" role="tab" aria-selected="true">Cases</button>
+        <button class="ns-tab" data-tab="dashboard" role="tab" aria-selected="false">Dashboard</button>
+        <button class="ns-tab" data-tab="log" role="tab" aria-selected="false">Responsible AI log</button>
+      </nav>
+    </header>
+
+    <section id="ns-view-cases" class="ns-view">
+      <div class="ns-layout">
+        <aside class="ns-case-list-wrap">
+          <button class="ns-btn ns-btn-primary ns-add-btn" id="ns-add-case-btn">+ Add case</button>
+          <input class="ns-input ns-search" id="ns-search" placeholder="Filter cases..." />
+          <div class="ns-case-list" id="ns-case-list" aria-label="Case list"></div>
+        </aside>
+        <main class="ns-detail" id="ns-detail"></main>
+      </div>
+    </section>
+
+    <section id="ns-view-dashboard" class="ns-view" style="display:none;">
+      <div class="ns-dash-grid" id="ns-dash-grid"></div>
+      <div class="ns-dash-chart">
+        <div class="ns-chart-title">Cases by fault category</div>
+        <div id="ns-bar-chart" class="ns-bar-chart"></div>
+      </div>
+      <div class="ns-dash-chart" style="margin-top:14px;">
+        <div class="ns-chart-title">Cases by severity</div>
+        <div id="ns-severity-chart" class="ns-bar-chart"></div>
+      </div>
+      <div class="ns-export-row">
+        <button class="ns-btn" id="ns-export-cases">Export cases.csv</button>
+        <button class="ns-btn" id="ns-export-reviews">Export reviews.json</button>
+      </div>
+    </section>
+
+    <section id="ns-view-log" class="ns-view" style="display:none;">
+      <div class="ns-export-row">
+        <button class="ns-btn" id="ns-export-log">Export Responsible AI log (.md)</button>
+      </div>
+      <div id="ns-log-list" class="ns-log-list"></div>
+    </section>
+  </div>
+
+  <div id="ns-modal-overlay" class="ns-modal-overlay" style="display:none;">
+    <div class="ns-modal">
+      <div class="ns-modal-head">
+        <span id="ns-modal-title">Add a case</span>
+        <button class="ns-btn" id="ns-modal-close">Close</button>
+      </div>
+      <div class="ns-modal-body">
+        <label class="ns-label">Case ID</label>
+        <input class="ns-input" id="f-case_id" placeholder="e.g. C033" />
+        <label class="ns-label">Category</label>
+        <select class="ns-input" id="f-category">
+          <option>VLAN</option><option>Gateway</option><option>DHCP</option><option>DNS</option>
+          <option>Routing</option><option>ACL</option><option>NAT</option><option>Wireless</option>
+        </select>
+        <label class="ns-label">Severity</label>
+        <select class="ns-input" id="f-severity"><option>Low</option><option>Medium</option><option>High</option></select>
+        <label class="ns-label">OSI layer</label>
+        <input class="ns-input" id="f-osi_layer" placeholder="e.g. Layer 3" />
+        <label class="ns-label">Concept tag</label>
+        <input class="ns-input" id="f-concept_tag" placeholder="e.g. missing-dhcp-relay" />
+        <label class="ns-label">Symptom (what the user/PC saw)</label>
+        <textarea class="ns-input ns-textarea" id="f-symptom" placeholder="e.g. PCs on VLAN 10/20 get 169.254.x.x APIPA addresses instead of DHCP-assigned ones"></textarea>
+        <label class="ns-label">Topology note</label>
+        <textarea class="ns-input ns-textarea" id="f-topology_note" placeholder="e.g. R1 router-on-a-stick, DHCP/DNS server on Gi0/1"></textarea>
+        <label class="ns-label">Show-command output (paste verbatim)</label>
+        <textarea class="ns-input ns-textarea ns-textarea-lg" id="f-show_output" placeholder="Paste your real CLI output here..."></textarea>
+        <label class="ns-label">Expected fault (your answer key)</label>
+        <textarea class="ns-input ns-textarea" id="f-expected_fault" placeholder="e.g. Missing ip helper-address on Gi0/0.10 and Gi0/0.20"></textarea>
+      </div>
+      <div class="ns-modal-foot">
+        <button class="ns-btn ns-btn-primary" id="ns-save-case">Save case</button>
+        <button class="ns-btn" id="ns-delete-case" style="display:none;color:var(--ns-red);">Delete case</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

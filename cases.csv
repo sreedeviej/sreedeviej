@@ -1,0 +1,31 @@
+Case ID,Case Name,Symptom,Topology,Evidence,Expected Fault,OSI Layer,Concept,Severity
+C01,Wrong IP Address,PC1 cannot ping PC2,PC1-SW1-PC2,"PC1 ipconfig; PC2 ipconfig; failed ping",PC1 has incorrect IP address,Layer 3,IP Addressing,Medium
+C02,Wrong Subnet Mask,PC cannot communicate with another PC,PC1-SW1-PC2,"PC1 ipconfig; PC2 ipconfig; failed ping",PC has incorrect subnet mask,Layer 3,Subnetting,Medium
+C03,Wrong Default Gateway,PC cannot reach remote network,PC1-SW1-R1-S1,"PC ipconfig; R1 interface config; failed ping",PC has incorrect default gateway,Layer 3,Default Gateway,High
+C04,Interface Shutdown,PC cannot communicate through router,PC1-SW1-R1-S1,"show ip interface brief; failed ping",Router interface is administratively down,Layer 1/3,Interface State,High
+C05,Wrong Router Interface IP,PC cannot reach remote network,PC1-SW1-R1-S1,"show ip interface brief; PC ipconfig; failed ping",Router interface has incorrect IP address,Layer 3,IP Addressing,High
+C06,Missing Static Route,PC cannot reach remote network,PC1-SW1-R1-R2-S1,"show ip route; failed ping",Required static route is missing,Layer 3,Routing,High
+C07,Wrong Static Route,Remote network unreachable,PC1-SW1-R1-R2-S1,"show ip route; failed ping",Static route points to incorrect destination or path,Layer 3,Routing,High
+C08,Invalid Next Hop,Remote network unreachable,PC1-SW1-R1-R2-S1,"show ip route; ping next hop; failed ping",Static route uses an incorrect next-hop address,Layer 3,Routing,High
+C09,Missing Return Route,PC can send traffic but replies do not return,PC1-SW1-R1-R2-S1,"show ip route on R2; failed ping",Return route to source network is missing,Layer 3,Routing,High
+C10,Wrong Subnet on Router Link,Router-to-router communication fails,PC1-SW1-R1-R2-S1,"show ip interface brief; interface configuration; failed ping",Router interfaces use inconsistent subnet masks,Layer 3,Subnetting,High
+C11,Wrong VLAN Assignment,PC cannot communicate with another PC,PC1-SW1-PC2,"show vlan brief; failed ping",PC port is assigned to the wrong VLAN,Layer 2,VLAN,Medium
+C12,Switch Port Shutdown,Connected PC cannot communicate,PC1-SW1-PC2,"show interfaces status; failed ping",Switch access port is administratively shut down,Layer 1/2,Switch Interface,Medium
+C13,Wrong VLAN on Server Port,PC cannot reach server,PC-SW1-R1-S1,"show vlan brief; server IP config; failed ping",Server-facing switch port is in the wrong VLAN,Layer 2,VLAN,High
+C14,Wrong Trunk Mode,Devices across switches cannot communicate,PC1-SW1-SW2-PC2,"show interfaces trunk; show interfaces switchport; failed ping",Switch-to-switch link is configured as access instead of trunk,Layer 2,Trunking,High
+C15,Wrong Allowed VLAN,Specific VLAN cannot cross trunk,PC1-SW1-SW2-PC2,"show interfaces trunk; failed ping",Required VLAN is not allowed on trunk,Layer 2,VLAN Trunking,High
+C16,Native VLAN Mismatch,Trunk communication shows VLAN inconsistency,SW1-SW2,"show interfaces trunk; switch logs; connectivity test",Native VLANs are mismatched on trunk,Layer 2,802.1Q Trunking,Medium
+C17,Wrong Access VLAN,PC has link but cannot reach same-network host,PC1-SW1-PC2,"show vlan brief; failed ping",Access port assigned to incorrect VLAN,Layer 2,VLAN,Medium
+C18,Duplex Mismatch,Network connection is slow or unreliable,PC-SW1,"show interfaces; interface counters; connectivity test",Duplex settings are mismatched,Layer 1/2,Ethernet Duplex,Medium
+C19,Speed Mismatch,Network connection has degraded performance,PC-SW1,"show interfaces; interface status; connectivity test",Interface speed settings are mismatched,Layer 1/2,Ethernet Speed,Medium
+C20,Wrong Server Default Gateway,Server cannot reach remote PC,PC-SW1-R1-S1,"server ipconfig; failed remote ping; R1 config",Server has incorrect default gateway,Layer 3,Default Gateway,High
+C21,Wrong VLAN Assignment on PC Port,PC cannot communicate despite correct IP,PC1-SW1-PC2,"show vlan brief; PC ipconfig; failed ping",PC switch port is assigned to wrong VLAN,Layer 2,VLAN,Medium
+C22,Switch Port Shutdown,PC connected to switch cannot communicate,PC1-SW1-PC2,"show interfaces status; failed ping",Switch port connected to PC is shutdown,Layer 1/2,Interface State,Medium
+C23,Wrong VLAN on PC1 Port,PC1 cannot communicate with PC2,PC1-SW1-PC2,"show vlan brief; failed ping",PC1 access port is assigned to wrong VLAN,Layer 2,VLAN,Medium
+C24,Wrong Trunk Mode,PCs on different switches cannot communicate,PC1-SW1-SW2-PC2,"show interfaces switchport; show interfaces trunk; failed ping",Switch-to-switch interface is incorrectly configured as access,Layer 2,Trunking,High
+C25,Wrong VLAN Allowed on Trunk,VLAN traffic cannot cross between switches,PC1-SW1-SW2-PC2,"show interfaces trunk; failed ping",Required VLAN is excluded from trunk allowed VLAN list,Layer 2,VLAN Trunking,High
+C26,Wrong IP Address on PC2,PC1 cannot reach PC2,PC1-SW1-SW2-PC2,"PC2 ipconfig; PC1 failed ping",PC2 has an IP address outside the intended subnet,Layer 3,IP Addressing,Medium
+C27,ACL Blocking Traffic,PC cannot reach server although routing works,PC1-SW1-R1-S1,"show access-lists; show ip interface; failed ping",ACL is denying required ICMP traffic,Layer 3,Access Control List,High
+C28,Wrong DHCP Pool Network,PC does not receive correct IP configuration,PC1-SW1-R1,"PC DHCP configuration; ipconfig; show ip dhcp pool",DHCP pool is configured for the wrong network,Layer 3,DHCP,High
+C29,Port Security Violation,Switch port shuts down after different device connects,PC1-SW1-PC2,"show port-security interface; show port-security address; interface status",Port security detects an unauthorized MAC address,Layer 2,Port Security,High
+C30,DNS Configuration Error,PC can reach server by IP but cannot resolve hostname,PC1-SW1-R1-DNS Server,"PC DNS configuration; ping by IP; hostname resolution failure",PC has incorrect or missing DNS server configuration,Layer 7,DNS,Medium
