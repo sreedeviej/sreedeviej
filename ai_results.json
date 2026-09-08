@@ -1,0 +1,255 @@
+{
+  "C01": {
+    "root_cause": "Insufficient output provided to determine the exact root cause of the ping failure.",
+    "confidence": "low",
+    "evidence": "The command output only specifies 'PC1 ipconfig; PC2 ipconfig; failed ping' without showing actual IP addresses, subnet masks, or ping error types.",
+    "osi_layer": "Layer 3 (Network)",
+    "next_command": "ipconfig /all",
+    "fix_steps": [
+      "Execute 'ipconfig /all' on PC1 to inspect its IP address, subnet mask, and gateway.",
+      "Execute 'ipconfig /all' on PC2 to inspect its IP address, subnet mask, and gateway.",
+      "Verify that both PCs are configured within the same IPv4 subnet."
+    ]
+  },
+  "C02": {
+    "root_cause": "Insufficient evidence to determine the specific root cause due to missing output data from the executed commands.",
+    "confidence": "low",
+    "evidence": "The output contains only command descriptors ('PC1 ipconfig; PC2 ipconfig; failed ping') without providing actual IP addresses, subnet masks, default gateways, or ICMP error details.",
+    "osi_layer": "Layer 3",
+    "next_command": "ipconfig /all",
+    "fix_steps": [
+      "Run 'ipconfig /all' on PC1 and PC2 to retrieve complete IP configuration details.",
+      "Check switchport status and VLAN assignments on SW1 using 'show ip interface brief'."
+    ]
+  },
+  "C03": {
+    "root_cause": "Insufficient evidence in provided output to determine specific root cause.",
+    "confidence": "low",
+    "evidence": "Show output contains generic placeholders ('PC ipconfig; R1 interface config; failed ping') without explicit IP configuration, subnet masks, or interface status details.",
+    "osi_layer": "Layer 3 (Network)",
+    "next_command": "show ip interface brief",
+    "fix_steps": [
+      "Run 'ipconfig /all' on PC1 to inspect IP address, subnet mask, and default gateway configuration.",
+      "Run 'show ip interface brief' on R1 to verify interface status and assigned IP addresses."
+    ]
+  },
+  "C04": {
+    "root_cause": "Insufficient output provided to determine the root cause of the communication failure.",
+    "confidence": "low",
+    "evidence": "No actual interface status, IP configuration, or ping error details were provided in the show-command output.",
+    "osi_layer": "Layer 3 (Network)",
+    "next_command": "show ip interface brief",
+    "fix_steps": [
+      "Run 'show ip interface brief' on R1 to inspect interface status, line protocol, and IP address assignments.",
+      "Run 'show running-config' on R1 to verify interface configurations and routing settings."
+    ]
+  },
+  "C05": {
+    "root_cause": "Insufficient output data provided to identify the specific configuration or physical failure.",
+    "confidence": "low",
+    "evidence": "The SHOW OUTPUT field lists command names ('show ip interface brief; PC ipconfig; failed ping') but includes no actual output values, interface states, or IP configuration details.",
+    "osi_layer": "Layer 3 (Network Layer)",
+    "next_command": "show ip interface brief",
+    "fix_steps": [
+      "Execute 'show ip interface brief' on router R1 to check interface line status and IP configuration.",
+      "Execute 'ipconfig /all' on PC1 to verify assigned IP address, subnet mask, and default gateway."
+    ]
+  },
+  "C06": {
+    "root_cause": "Insufficient command output provided to determine why the remote network is unreachable.",
+    "confidence": "low",
+    "evidence": "The output contains only command names ('show ip route; failed ping') without any routing table entries, interface statuses, or ping details.",
+    "osi_layer": "Layer 3",
+    "next_command": "show ip route",
+    "fix_steps": [
+      "Execute 'show ip route' on R1 and R2 to display the active routing tables.",
+      "Verify if a route exists for the destination remote network on all intermediate routers."
+    ]
+  },
+  "C07": {
+    "root_cause": "Insufficient output provided to determine why the remote network is unreachable.",
+    "confidence": "low",
+    "evidence": "The prompt lists 'show ip route; failed ping' but does not include any specific routing table entries or interface details.",
+    "osi_layer": "Layer 3 (Network Layer)",
+    "next_command": "show ip route",
+    "fix_steps": [
+      "Execute 'show ip route' on R1 to examine the routing table entries for a valid path to the remote network.",
+      "Execute 'show ip interface brief' on R1 and R2 to confirm interface statuses and IP assignments."
+    ]
+  },
+  "C08": {
+    "root_cause": "Next-hop IP address is unreachable, but exact cause cannot be verified due to insufficient interface and route details in the provided output.",
+    "confidence": "low",
+    "evidence": "Ping to next hop failed.",
+    "osi_layer": "Layer 3 (Network)",
+    "next_command": "show ip interface brief",
+    "fix_steps": [
+      "Verify physical link connectivity to the next-hop device.",
+      "Check local interface IP address and subnet mask configuration for correctness."
+    ]
+  },
+  "C09": {
+    "root_cause": "Insufficient evidence provided to determine the exact return path failure on R2, though a missing or incorrect route back to PC1's subnet is suspected.",
+    "confidence": "low",
+    "evidence": "The provided output 'show ip route on R2; failed ping' lacks the actual routing table output required to verify R2's return path.",
+    "osi_layer": "Layer 3",
+    "next_command": "show ip route",
+    "fix_steps": [
+      "Run 'show ip route' on R2 to inspect the routing table for a valid route back to PC1's subnet."
+    ]
+  },
+  "C10": {
+    "root_cause": "Insufficient command output provided to determine the root cause of the communication failure.",
+    "confidence": "low",
+    "evidence": "The prompt lists command names rather than detailed output showing interface states, IP configurations, or ping error details.",
+    "osi_layer": "Layer 3 (Network Layer)",
+    "next_command": "show ip interface brief",
+    "fix_steps": [
+      "Run 'show ip interface brief' on both R1 and R2 to verify IP addresses and operational statuses."
+    ]
+  },
+  "C11": {
+    "root_cause": "Insufficient evidence in the provided output to determine why PC communication is failing.",
+    "confidence": "low",
+    "evidence": "The show output only states 'show vlan brief; failed ping' without providing the actual command output details such as port-to-VLAN assignments or interface statuses.",
+    "osi_layer": "Layer 2 (Data Link)",
+    "next_command": "show vlan brief",
+    "fix_steps": [
+      "Run 'show vlan brief' on SW1 to view actual VLAN assignments.",
+      "Run 'show interfaces status' on SW1 to verify port states and VLAN memberships."
+    ]
+  },
+  "C12": {
+    "root_cause": "Insufficient interface status details provided in output to determine why PC communication is failing.",
+    "confidence": "low",
+    "evidence": "Show command output lacks detailed interface states, duplex/speed settings, or VLAN assignments for SW1 ports.",
+    "osi_layer": "Layer 2",
+    "next_command": "show interfaces status",
+    "fix_steps": [
+      "Run 'show interfaces status' on SW1 to inspect port link status and VLAN configuration.",
+      "Verify that switch ports connected to PC1 and PC2 are in the 'connected' state and assigned to the correct VLAN."
+    ]
+  },
+  "C13": {
+    "root_cause": "Insufficient evidence provided to determine the specific cause of the ping failure between PC and server.",
+    "confidence": "low",
+    "evidence": "The provided show output contains placeholders without specific IP configurations, interface statuses, or VLAN details.",
+    "osi_layer": "Layer 3",
+    "next_command": "show ip interface brief",
+    "fix_steps": [
+      "Run 'show ip interface brief' on R1 and SW1 to check interface status and IP address configurations."
+    ]
+  },
+  "C14": {
+    "root_cause": "Insufficient evidence provided in the show-command output to identify the specific trunking or VLAN issue.",
+    "confidence": "low",
+    "evidence": "The output only lists command names ('show interfaces trunk; show interfaces switchport; failed ping') without detailed operational data or interface states.",
+    "osi_layer": "Layer 2",
+    "next_command": "show interfaces trunk",
+    "fix_steps": [
+      "Run 'show interfaces trunk' on SW1 to view active trunk links and allowed VLANs.",
+      "Run 'show interfaces switchport' on the connecting interfaces of SW1 and SW2 to verify operational modes."
+    ]
+  },
+  "C15": {
+    "root_cause": "Insufficient evidence to determine why the VLAN cannot cross the trunk because interface trunk output details were not provided.",
+    "confidence": "low",
+    "evidence": "No specific output details were provided for 'show interfaces trunk'.",
+    "osi_layer": "Layer 2",
+    "next_command": "show interfaces trunk",
+    "fix_steps": [
+      "Run 'show interfaces trunk' on SW1 and SW2 to view the allowed and active VLAN list on the trunk link."
+    ]
+  },
+  "C16": {
+    "root_cause": "Insufficient command output provided to verify native VLAN or allowed VLAN configuration mismatch between SW1 and SW2.",
+    "confidence": "low",
+    "evidence": "No actual output text was provided for 'show interfaces trunk' or switch logs.",
+    "osi_layer": "Layer 2 (Data Link)",
+    "next_command": "show interfaces trunk",
+    "fix_steps": [
+      "Execute 'show interfaces trunk' on both SW1 and SW2 to identify native VLAN mismatches or pruned VLANs.",
+      "Execute 'show vlan brief' on both switches to confirm VLAN creation."
+    ]
+  },
+  "C17": {
+    "root_cause": "Insufficient evidence to determine root cause as no specific output text was provided for the VLAN configuration or ping command.",
+    "confidence": "low",
+    "evidence": "The provided show output contains only the command names ('show vlan brief; failed ping') without the actual switch configuration or ping results.",
+    "osi_layer": "Layer 2",
+    "next_command": "show vlan brief",
+    "fix_steps": [
+      "Run 'show vlan brief' on SW1 to inspect VLAN assignments for the connected switch ports."
+    ]
+  },
+  "C18": {
+    "root_cause": "Insufficient command output provided to diagnose the cause of the slow or unreliable connection.",
+    "confidence": "low",
+    "evidence": "No interface statistics, error counters, or status details were provided in the command output.",
+    "osi_layer": "Layer 1",
+    "next_command": "show interfaces FastEthernet 0/1",
+    "fix_steps": [
+      "Execute 'show interfaces FastEthernet 0/1' on SW1 to inspect for speed/duplex mismatches, input/output errors, or collisions.",
+      "Verify physical cable connections between PC and SW1."
+    ]
+  },
+  "C19": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C20": {
+    "root_cause": "Insufficient command output provided to determine the root cause of the connectivity failure between the Server and remote PC.",
+    "confidence": "low",
+    "evidence": "The provided show output contains only general command placeholders ('server ipconfig; failed remote ping; R1 config') without specific IP addresses, interface states, or routing table details.",
+    "osi_layer": "Layer 3 (Network)",
+    "next_command": "show ip interface brief",
+    "fix_steps": [
+      "Run 'ipconfig /all' on the Server to verify IP configuration and default gateway.",
+      "Run 'show ip interface brief' and 'show ip route' on R1 to verify interface statuses and routing."
+    ]
+  },
+  "C21": {
+    "root_cause": "Insufficient evidence provided in command output to determine the exact root cause.",
+    "confidence": "low",
+    "evidence": "The show-command output contains only command names ('show vlan brief; PC ipconfig; failed ping') without actual output text or interface states.",
+    "osi_layer": "Layer 2 (Data Link)",
+    "next_command": "show vlan brief",
+    "fix_steps": [
+      "Run 'show vlan brief' on SW1 to inspect VLAN assignments.",
+      "Run 'ipconfig /all' on PC1 and PC2 to verify IP addresses and subnet masks."
+    ]
+  },
+  "C22": {
+    "root_cause": "Insufficient output provided to determine the root cause of the communication failure.",
+    "confidence": "low",
+    "evidence": "No specific output data from 'show interfaces status' was provided in the prompt.",
+    "osi_layer": "Layer 1",
+    "next_command": "show interfaces status",
+    "fix_steps": [
+      "Execute and capture the full output of 'show interfaces status' on SW1 to verify physical link state and VLAN assignments."
+    ]
+  },
+  "C23": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C24": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C25": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C26": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C27": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C28": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C29": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  },
+  "C30": {
+    "error": "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota ex"
+  }
+}
